@@ -2,7 +2,7 @@
 # coding: utf-8
 
 
-#Add libraries
+# Add libraries
 
 import pandas as pd
 import numpy as np
@@ -23,39 +23,39 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score, classification_report, confusion_matrix, ConfusionMatrixDisplay
 
 
-#Load data
+# Load data
 
 df = pd.read_csv('flood_tweets.csv')
 
-#Preview data
+# Preview data
 
 
 df.head()
 
 
-#Get more details of data
+# Get more details of data
 
 
 df.info()
 
 
-#Count null entries
+# Count null entries
 
 df.isnull().sum()
 
 
-#Get columns
+# Get columns
 
 df.columns
 
 
-#Create text only dataframe
+# Create text only dataframe
 
 text_df = df.drop(['id', 'author_username', 'author_location', 'author_description', 'author_created', 'author_followers', 'author_following', 'author_favourites', 'author_verified', 'date', 'retweets', 'likes', 'isRetweet'], axis=1)
 text_df.head()
 
 
-#View raw text data from X (Twitter)
+# View raw text data from X (Twitter)
 
 print(text_df['text'].iloc[0],"\n")
 print(text_df['text'].iloc[1],"\n")
@@ -63,12 +63,12 @@ print(text_df['text'].iloc[2],"\n")
 print(text_df['text'].iloc[3],"\n")
 print(text_df['text'].iloc[4],"\n")
 
-#Get details on text dataframe
+# Get details on text dataframe
 
 text_df.info()
 
 
-#Define function and pass text data to process data into usable format
+# Define function and pass text data to process data into usable format
 
 def data_processing(text):
     text = text.lower()
@@ -80,17 +80,17 @@ def data_processing(text):
     return " ".join(filtered_text)
 
 
-#Apply to text data
+# Apply to text data
 
 text_df.text = text_df['text'].apply(data_processing)
 
 
-#Remove duplicates 
+# Remove duplicates 
 
 text_df = text_df.drop_duplicates('text')
 
 
-#Perform stemming on words
+# Perform stemming on words
 
 stemmer = PorterStemmer()
 def stemming(data):
@@ -98,17 +98,17 @@ def stemming(data):
     return data
 
 
-#Apply stem to data
+# Apply stem to data
 
 text_df['text'] = text_df['text'].apply(lambda x: stemming(x))
 
 
-#Preview processed data
+# Preview processed data
 
 text_df.head()
 
 
-#Analyze data
+# Analyze data
 
 print(text_df['text'].iloc[0],"\n")
 print(text_df['text'].iloc[1],"\n")
@@ -117,27 +117,27 @@ print(text_df['text'].iloc[3],"\n")
 print(text_df['text'].iloc[4],"\n")
 
 
-#Get updated details on data
+# Get updated details on data
 
 text_df.info()
 
 
-#Calculate text polarity with TextBlob
+# Calculate text polarity with TextBlob
 
 def polarity(text):
     return TextBlob(text).sentiment.polarity
 
-#Add to data frame
+# Add to data frame
 
 text_df['polarity'] = text_df['text'].apply(polarity)
 
 
-#Preview data frame with polarity
+# Preview data frame with polarity
 
 text_df.head(10)
 
 
-#Add function for Sentiment
+# Add function for Sentiment
 
 def sentiment(label):
     if label <0:
@@ -148,24 +148,24 @@ def sentiment(label):
         return "Positive"
 
 
-#Apply on data frame
+# Apply on data frame
 
 
 text_df['sentiment'] = text_df['polarity'].apply(sentiment)
 
 
-#Preview data frame
+# Preview data frame
 
 text_df.head()
 
 
-#Visualize the distribution of data with plot
+# Visualize the distribution of data with plot
 
 fig = plt.figure(figsize=(5,5))
 sns.countplot(x='sentiment', data = text_df)
 
 
-#Visualize data with pie chart
+# Visualize data with pie chart
 
 fig = plt.figure(figsize=(7,7))
 colors = ("yellowgreen", "gold", "red")
@@ -177,14 +177,14 @@ tags.plot(kind='pie', autopct='%1.1f%%', shadow=True, colors = colors,
 plt.title('Distribution of sentiments')
 
 
-#View top five tweets for positive sentiment
+# View top five tweets for positive sentiment
 
 pos_tweets = text_df[text_df.sentiment == 'Positive']
 pos_tweets = pos_tweets.sort_values(['polarity'], ascending= False)
 pos_tweets.head()
 
 
-#Visualize positive tweets
+# Visualize positive tweets
 
 text = ' '.join([word for word in pos_tweets['text']])
 plt.figure(figsize=(20,15), facecolor='None')
@@ -196,14 +196,14 @@ plt.show()
 
 
 
-#View top five tweets in negative sentiment
+# View top five tweets in negative sentiment
 
 neg_tweets = text_df[text_df.sentiment == 'Negative']
 neg_tweets = neg_tweets.sort_values(['polarity'], ascending= False)
 neg_tweets.head()
 
 
-#Visualize negative tweets
+# Visualize negative tweets
 
 text = ' '.join([word for word in neg_tweets['text']])
 plt.figure(figsize=(20,15), facecolor='None')
@@ -214,14 +214,14 @@ plt.title('Most frequent words in negative tweets', fontsize=19)
 plt.show()
 
 
-#View top five tweets with neutral sentiment
+# View top five tweets with neutral sentiment
 
 neutral_tweets = text_df[text_df.sentiment == 'Neutral']
 neutral_tweets = neutral_tweets.sort_values(['polarity'], ascending= False)
 neutral_tweets.head()
 
 
-#Visualize tweets
+# Visualize tweets
 
 text = ' '.join([word for word in neutral_tweets['text']])
 plt.figure(figsize=(20,15), facecolor='None')
@@ -232,31 +232,31 @@ plt.title('Most frequent words in neutral tweets', fontsize=19)
 plt.show()
 
 
-# #Vectorize data
+# Vectorize data
 
 vect = CountVectorizer(ngram_range=(1,2)).fit(text_df['text'])
 
 
-#Get features
+# Get features
 
 feature_names = vect.get_feature_names_out()
 print("Number of features: {}\n".format(len(feature_names)))
 print("First 20 features:\n {}".format(feature_names[:20]))
 
 
-#Build model.Separate data into X and Y
+# Build model.Separate data into X and Y
 
 X = text_df['text']
 Y = text_df['sentiment']
 X = vect.transform(X)
 
 
-#Place data into testing and training data
+# Place data into testing and training data
 
 x_train, x_test, y_train, y_test = train_test_split(X, Y, test_size=0.2, random_state=42)
 
 
-#Print size of testing and training data
+# Print size of testing and training data
 
 print("Size of x_train:", (x_train.shape))
 print("Size of y_train:", (y_train.shape))
@@ -268,7 +268,7 @@ import warnings
 warnings.filterwarnings('ignore')
 
 
-#Load logistic regression model
+# Load logistic regression model
 
 logreg = LogisticRegression()
 logreg.fit(x_train, y_train)
@@ -277,15 +277,15 @@ logreg_acc = accuracy_score(logreg_pred, y_test)
 print("Test accuracy: {:.2f}%".format(logreg_acc*100))
 
 
-#Print model accuracy
-#Add Confusion matrix and Classification report
+# Print model accuracy
+# Add Confusion matrix and Classification report
 
 print(confusion_matrix(y_test, logreg_pred))
 print("\n")
 print(classification_report(y_test, logreg_pred))
 
 
-#Visualize Confusion matrix
+# Visualize Confusion matrix
 
 style.use('classic')
 cm = confusion_matrix(y_test, logreg_pred, labels=logreg.classes_)
@@ -293,12 +293,12 @@ disp = ConfusionMatrixDisplay(confusion_matrix = cm, display_labels=logreg.class
 disp.plot()
 
 
-#Import GridSearchCV
+# Import GridSearchCV
 
 from sklearn.model_selection import GridSearchCV
 
 
-#Add hyperparameter tuning to test model performance
+# Add hyperparameter tuning to test model performance
 
 param_grid={'C':[0.001, 0.01, 0.1, 1, 10]}
 grid = GridSearchCV(LogisticRegression(), param_grid)
@@ -309,52 +309,58 @@ GridSearchCV(estimator=LogisticRegression(),
              param_grid={'C': [0.001, 0.01, 0.1, 1, 10]})
 
 
-#Print best parameter
+# Print best parameter
 
 print("Best parameters:", grid.best_params_)
 
 y_pred = grid.predict(x_test)
 
 
-#Get and print accuracy score
+# Get and print accuracy score
 
 logreg_acc = accuracy_score(y_pred, y_test)
 print("Test accuracy: {:.2f}%".format(logreg_acc*100))
 
 
-#Print Confusion matrix and classification report
+# Print Confusion matrix and classification report
 
 print(confusion_matrix(y_test, y_pred))
 print("\n")
 print(classification_report(y_test, y_pred))
 
 
-#Run model with Support Vector Macine
-#import Support Vector classifier
+# Run model with Support Vector Macine
+# import Support Vector classifier
 
 from sklearn.svm import LinearSVC
 
 
-#Load classifier and fit data
+# Load classifier and fit data
 
 SVCmodel = LinearSVC()
 SVCmodel.fit(x_train, y_train)
 
-#Add values for given test data. Calculate test accuracy
+# Add values for given test data. Calculate test accuracy
 
 svc_pred = SVCmodel.predict(x_test)
 svc_acc = accuracy_score(svc_pred, y_test)
 print("test accuracy: {:.2f}%".format(svc_acc*100))
 
 
-#Print confusion matrix and classification report
+# Print confusion matrix and classification report
 
 print(confusion_matrix(y_test, svc_pred))
 print("\n")
 print(classification_report(y_test, svc_pred))
 
+# Visualize Confusion matrix
 
-#Add hyperparameter tuning to test model performance
+style.use('classic')
+cm = confusion_matrix(y_test, svc_pred, labels=SVCmodel.classes_)
+disp = ConfusionMatrixDisplay(confusion_matrix = cm, display_labels=SVCmodel.classes_)
+disp.plot()
+
+# Add hyperparameter tuning to test model performance
 
 grid = {
     'C':[0.01, 0.1, 1, 10],
@@ -366,7 +372,7 @@ grid = GridSearchCV(SVCmodel, param_grid)
 grid.fit(x_train, y_train)
 
 
-#Print best parameter
+# Print best parameter
 
 print("Best parameter:", grid.best_params_)
 
@@ -374,13 +380,13 @@ print("Best parameter:", grid.best_params_)
 y_pred = grid.predict(x_test)
 
 
-#Get and print accuracy score
+# Get and print accuracy score
 
 logreg_acc = accuracy_score(y_pred, y_test)
 print("Test accuracy: {:.2f}%".format(logreg_acc*100))
 
 
-#Print confusion matrix and classification report
+# Print confusion matrix and classification report
 
 print(confusion_matrix(y_test, y_pred))
 print("\n")
