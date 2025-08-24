@@ -92,7 +92,7 @@ The machine learning models achieved moderate accuracy, highlighting the challen
 
 ### Visualization
 *   **Word Clouds:** Generated for each sentiment class to visualize the most frequent words in Negative, Positive, and Neutral tweets.
-![Word Cloud for Negative Tweets]
+[Word Cloud for Negative Tweets]
 <div>
   <img src="https://raw.githubusercontent.com/frankraDIUM/Sentiment-Analysis-X-Twitter-data/refs/heads/main/Visualization%20of%20Tweets.jpg"/>
 </div>
