@@ -69,11 +69,11 @@ To improve classification robustness, two machine learning models were trained a
 ### Sentiment Distribution
 Initial analysis with TextBlob revealed the distribution of sentiments across the collected tweets, visualized through bar graphs and pie charts.
 ![Sentiment Distribution]
-!<div>
+<div>
   <img src="https://raw.githubusercontent.com/frankraDIUM/Sentiment-Analysis-X-Twitter-data/refs/heads/main/Distribution%20of%20Sentiments%201.jpg"/>
 </div>
 
-!<div>
+<div>
   <img src="https://raw.githubusercontent.com/frankraDIUM/Sentiment-Analysis-X-Twitter-data/refs/heads/main/Distribution%20of%20Sentiments%202.jpg"/>
 </div>
 
@@ -93,7 +93,7 @@ The machine learning models achieved moderate accuracy, highlighting the challen
 ### Visualization
 *   **Word Clouds:** Generated for each sentiment class to visualize the most frequent words in Negative, Positive, and Neutral tweets.
 ![Word Cloud for Negative Tweets]
-!<div>
+<div>
   <img src="https://raw.githubusercontent.com/frankraDIUM/Sentiment-Analysis-X-Twitter-data/refs/heads/main/Visualization%20of%20Tweets.jpg"/>
 </div>
 
