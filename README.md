@@ -1,4 +1,3 @@
-Of course. Here is a comprehensive README.md file for the Sentiment Analysis project.
 
 ---
 
