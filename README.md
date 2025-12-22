@@ -139,11 +139,6 @@ The machine learning models achieved moderate accuracy, highlighting the challen
 *   **Multi-Platform Analysis:** Incorporate data from other social media platforms like Facebook and Instagram for a more comprehensive view.
 
 
-
-## 📄 License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
-
 ## 🙏 Acknowledgments
 
 - Data sourced via [Apify](https://apify.com/) from X (Twitter).
