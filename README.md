@@ -68,13 +68,15 @@ To improve classification robustness, two machine learning models were trained a
 ### Sentiment Distribution
 Initial analysis with TextBlob revealed the distribution of sentiments across the collected tweets, visualized through bar graphs and pie charts.
 ![Sentiment Distribution]
-<div>
-  <img src="https://raw.githubusercontent.com/frankraDIUM/Sentiment-Analysis-X-Twitter-data/refs/heads/main/Distribution%20of%20Sentiments%201.jpg"/>
-</div>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/frankraDIUM/Sentiment-Analysis-X-Twitter-data/refs/heads/main/Distribution%20of%20Sentiments%201.jpg" />
+</p>
 
-<div>
-  <img src="https://raw.githubusercontent.com/frankraDIUM/Sentiment-Analysis-X-Twitter-data/refs/heads/main/Distribution%20of%20Sentiments%202.jpg"/>
-</div>
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/frankraDIUM/Sentiment-Analysis-X-Twitter-data/refs/heads/main/Distribution%20of%20Sentiments%202.jpg" />
+</p>
+
 
 ### Model Performance
 The machine learning models achieved moderate accuracy, highlighting the challenge of classifying social media text, which is often short, informal, and context-dependent.
