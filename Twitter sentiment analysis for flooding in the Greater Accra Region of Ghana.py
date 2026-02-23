@@ -218,13 +218,13 @@ X = vect.transform(X)
 
 
 # Place data into testing and training data
-x_train, x_test, y_train, y_test = train_test_split(X, Y, test_size=0.2, random_state=42)
+X_train, X_test, y_train, y_test = train_test_split(X, Y, test_size=0.2, random_state=42)
 
 
 # Print size of testing and training data
-print("Size of x_train:", (x_train.shape))
+print("Size of x_train:", (X_train.shape))
 print("Size of y_train:", (y_train.shape))
-print("Size of x_test:", (x_test.shape))
+print("Size of x_test:", (X_test.shape))
 print("Size of y_test:", (y_test.shape))
 
 
@@ -234,8 +234,8 @@ warnings.filterwarnings('ignore')
 
 # Load logistic regression model
 logreg = LogisticRegression()
-logreg.fit(x_train, y_train)
-logreg_pred = logreg.predict(x_test)
+logreg.fit(X_train, y_train)
+logreg_pred = logreg.predict(X_test)
 logreg_acc = accuracy_score(logreg_pred, y_test)
 print("Test accuracy: {:.2f}%".format(logreg_acc*100))
 
@@ -261,7 +261,7 @@ from sklearn.model_selection import GridSearchCV
 # Add hyperparameter tuning to test model performance
 param_grid={'C':[0.001, 0.01, 0.1, 1, 10]}
 grid = GridSearchCV(LogisticRegression(), param_grid)
-grid.fit(x_train, y_train)
+grid.fit(X_train, y_train)
 
 
 GridSearchCV(estimator=LogisticRegression(),
@@ -271,7 +271,7 @@ GridSearchCV(estimator=LogisticRegression(),
 # Print best parameter
 print("Best parameters:", grid.best_params_)
 
-y_pred = grid.predict(x_test)
+y_pred = grid.predict(X_test)
 
 
 # Get and print accuracy score
@@ -293,10 +293,10 @@ from sklearn.svm import LinearSVC
 
 # Load classifier and fit data
 SVCmodel = LinearSVC()
-SVCmodel.fit(x_train, y_train)
+SVCmodel.fit(X_train, y_train)
 
 # Add values for given test data. Calculate test accuracy
-svc_pred = SVCmodel.predict(x_test)
+svc_pred = SVCmodel.predict(X_test)
 svc_acc = accuracy_score(svc_pred, y_test)
 print("test accuracy: {:.2f}%".format(svc_acc*100))
 
@@ -320,14 +320,14 @@ grid = {
     'gamma':[0.01,1]
 }
 grid = GridSearchCV(SVCmodel, param_grid)
-grid.fit(x_train, y_train)
+grid.fit(X_train, y_train)
 
 
 # Print best parameter
 print("Best parameter:", grid.best_params_)
 
 
-y_pred = grid.predict(x_test)
+y_pred = grid.predict(X_test)
 
 
 # Get and print accuracy score
