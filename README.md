@@ -3,11 +3,11 @@
 
 # Sentiment Analysis of Flood Risk Perception in Greater Accra using X/Twitter Data
 
-## 📖 Project Overview
+## Project Overview
 
 This project performs **Sentiment Analysis** on X/Twitter data to gauge public perception and emotional tone regarding flood risk in Ghana's Greater Accra Region. By scraping and analyzing tweets containing flood-related keywords, this study categorizes public sentiment into **Positive, Negative, and Neutral** classes. The goal is to provide insights into community concerns, government response perceptions, and overall social vulnerability, complementing traditional geospatial flood risk models with human-centric data.
 
-## 🗺️ Study Area Context
+## Study Area Context
 
 The analysis focuses on public discourse surrounding flooding in the **Greater Accra Region**, Ghana's capital and most densely populated area. This region is highly vulnerable to flooding due to its:
 *   Low-lying coastal plains
@@ -17,7 +17,8 @@ The analysis focuses on public discourse surrounding flooding in the **Greater A
 
 Understanding public sentiment here is crucial for effective disaster communication, policy-making, and community engagement strategies.
 
-## 📊 Data Collection
+
+## Data Collection
 
 *   **Source:** X (formerly Twitter)
 *   **Method:** Data was scraped using third-party tools (Twitter Scraper & Twitter Scraper V2) on [Apify.com](https://www.apify.com/).
@@ -30,7 +31,8 @@ Understanding public sentiment here is crucial for effective disaster communicat
     *   Engagement metrics (`likes count`, `retweets`)
     *   Author account details (`followers`, `following`, `account creation date`)
 
-## ⚙️ Methodology & Processing
+
+## Methodology & Processing
 
 ### 1. Data Preprocessing
 Raw tweet data contains noise that must be cleaned for accurate analysis. The following preprocessing steps were implemented in **Python** using libraries like `pandas`, `nltk`, and `re`:
@@ -44,6 +46,7 @@ Raw tweet data contains noise that must be cleaned for accurate analysis. The fo
     *   Remove stop words (e.g., "the", "and", "is") using the NLTK corpus.
 *   **Stemming:** Words were reduced to their root form using the **Porter Stemmer** algorithm (e.g., "flooding" -> "flood") to normalize the vocabulary.
 *   **Deduplication:** Duplicate tweets were removed to prevent skewing the results.
+
 
 ### 2. Sentiment Classification
 *   **Tool:** The `TextBlob` library was used for initial sentiment polarity scoring.
@@ -63,7 +66,8 @@ To improve classification robustness, two machine learning models were trained a
 *   **Training:** The dataset was split into a training set (80%) and a testing set (20%).
 *   **Hyperparameter Tuning:** `GridSearchCV` was used to find the optimal parameters for each model.
 
-## 📈 Results & Performance
+
+## Results & Performance
 
 ### Sentiment Distribution
 Initial analysis with TextBlob revealed the distribution of sentiments across the collected tweets, visualized through bar graphs and pie charts.
@@ -86,10 +90,12 @@ The machine learning models achieved moderate accuracy, highlighting the challen
 | **Logistic Regression** | 58.90% | 0.61 | 0.59 | 0.55 |
 | **Linear SVC** | **60.00%** | **0.62** | **0.60** | **0.57** |
 
+
 **Key Findings:**
 *   The **Neutral** class had the highest recall (~0.86), meaning the model was best at correctly identifying neutral tweets.
 *   The **Negative** class had the lowest recall (~0.23-0.29), indicating the model often misclassified negative tweets as neutral or positive.
 *   The **Positive** class was the most challenging, showing lower precision and recall scores. Manual inspection revealed that many "positive" tweets were actually about government promises and plans to combat flooding, which were hopeful in tone but contextually related to a negative event.
+
 
 ### Visualization
 *   **Word Clouds:** Generated for each sentiment class to visualize the most frequent words in Negative, Positive, and Neutral tweets.
@@ -98,9 +104,11 @@ The machine learning models achieved moderate accuracy, highlighting the challen
   <img src="https://raw.githubusercontent.com/frankraDIUM/Sentiment-Analysis-X-Twitter-data/refs/heads/main/Visualization%20of%20Tweets.jpg"/>
 </div>
 
+
+
 ```
 
-## 🛠️ Installation & Usage
+## Installation & Usage
 
 ### Prerequisites
 *   **Python 3.7+**
@@ -114,10 +122,10 @@ The machine learning models achieved moderate accuracy, highlighting the challen
     *   `wordcloud`
 
 ### Running the Analysis
-1.  **Clone the repository** and navigate to the project directory.
-2.  **Install the required packages** (see above).
-3.  **Place your raw Twitter data** in the `Data/Raw/` folder.
-4.  **Run the main script:**
+1.  Clone the repository and navigate to the project directory.
+2.  Install the required packages (see above).
+3.  Place your raw Twitter data in the `Data/Raw/` folder.
+4.  Run the main script:
     ```bash
     python Scripts/Twitter sentiment analysis for flooding in the Greater Accra Region of Ghana.py
     ```
@@ -126,22 +134,22 @@ The machine learning models achieved moderate accuracy, highlighting the challen
     *   Visualizations of sentiment distribution
     *   Performance metrics and confusion matrices for the ML models
 
-## 🎯 Conclusions & Insights
+## Conclusions & Insights
 
-*   **Public Discourse:** The analysis captured a mix of frustration (negative), factual reporting (neutral), and discussion of solutions (positive) related to flooding in Accra.
-*   **Model Limitations:** Achieving high accuracy (~60%) with standard ML models on social media text is challenging due to sarcasm, irony, and complex context. For example, tweets with a positive tone discussing government action were often rooted in a negative flooding event.
-*   **Value of Integration:** This sentiment data provides crucial qualitative context to quantitative geospatial flood models, highlighting areas where public concern is highest and where communication efforts might be needed most.
+*   Public Discourse: The analysis captured a mix of frustration (negative), factual reporting (neutral), and discussion of solutions (positive) related to flooding in Accra.
+*   Model Limitations: Achieving high accuracy (~60%) with standard ML models on social media text is challenging due to sarcasm, irony, and complex context. For example, tweets with a positive tone discussing government action were often rooted in a negative flooding event.
+*   Value of Integration: This sentiment data provides crucial qualitative context to quantitative geospatial flood models, highlighting areas where public concern is highest and where communication efforts might be needed most.
 
-## 🔮 Future Work
+## Future Work
 
-*   **Advanced NLP Techniques:** Utilize pre-trained transformer models like BERT or RoBERTa for more context-aware sentiment classification.
-*   **Aspect-Based Sentiment Analysis:** Move beyond overall sentiment to identify specific aspects people are talking about (e.g., sentiment on "drainage," "government response," "property damage").
-*   **Temporal Analysis:** Scrape data over a longer period to analyze how sentiment shifts before, during, and after major flood events.
-*   **Geolocation Integration:** Map sentiments to specific locations within Greater Accra (where possible) to create a spatial sentiment layer.
-*   **Multi-Platform Analysis:** Incorporate data from other social media platforms like Facebook and Instagram for a more comprehensive view.
+*   Advanced NLP Techniques: Utilize pre-trained transformer models like BERT or RoBERTa for more context-aware sentiment classification.
+*   Aspect-Based Sentiment Analysis:** Move beyond overall sentiment to identify specific aspects people are talking about (e.g., sentiment on "drainage," "government response," "property damage").
+*   Temporal Analysis: Scrape data over a longer period to analyze how sentiment shifts before, during, and after major flood events.
+*   Geolocation Integration: Map sentiments to specific locations within Greater Accra (where possible) to create a spatial sentiment layer.
+*   Multi-Platform Analysis: Incorporate data from other social media platforms like Facebook and Instagram for a more comprehensive view.
 
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 - Data sourced via [Apify](https://apify.com/) from X (Twitter).
 - The `nltk` and `scikit-learn` communities for providing robust NLP and ML tools.
