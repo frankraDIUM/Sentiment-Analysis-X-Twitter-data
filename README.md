@@ -108,9 +108,9 @@ The machine learning models achieved moderate accuracy, highlighting the challen
 
 ```
 
-## Installation & Usage
+Installation & Usage
 
-### Prerequisites
+Prerequisites
 *   **Python 3.7+**
 *   Required Python libraries: Install via `pip install -r requirements.txt`
     *   `pandas`
@@ -121,7 +121,7 @@ The machine learning models achieved moderate accuracy, highlighting the challen
     *   `matplotlib`
     *   `wordcloud`
 
-### Running the Analysis
+Running the Analysis
 1.  Clone the repository and navigate to the project directory.
 2.  Install the required packages (see above).
 3.  Place your raw Twitter data in the `Data/Raw/` folder.
@@ -134,13 +134,13 @@ The machine learning models achieved moderate accuracy, highlighting the challen
     *   Visualizations of sentiment distribution
     *   Performance metrics and confusion matrices for the ML models
 
-## Conclusions & Insights
+Conclusions & Insights
 
 *   Public Discourse: The analysis captured a mix of frustration (negative), factual reporting (neutral), and discussion of solutions (positive) related to flooding in Accra.
 *   Model Limitations: Achieving high accuracy (~60%) with standard ML models on social media text is challenging due to sarcasm, irony, and complex context. For example, tweets with a positive tone discussing government action were often rooted in a negative flooding event.
 *   Value of Integration: This sentiment data provides crucial qualitative context to quantitative geospatial flood models, highlighting areas where public concern is highest and where communication efforts might be needed most.
 
-## Future Work
+Future Work
 
 *   Advanced NLP Techniques: Utilize pre-trained transformer models like BERT or RoBERTa for more context-aware sentiment classification.
 *   Aspect-Based Sentiment Analysis:** Move beyond overall sentiment to identify specific aspects people are talking about (e.g., sentiment on "drainage," "government response," "property damage").
